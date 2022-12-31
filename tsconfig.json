@@ -2,7 +2,7 @@
     "compilerOptions": {
       "module": "commonjs",
       "noImplicitReturns": true,
-      "noUnusedLocals": true,
+      // "noUnusedLocals": true,
       "esModuleInterop": true, // important!
       "target": "esnext",
       "strict": true,

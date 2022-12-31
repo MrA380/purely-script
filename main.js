@@ -3,25 +3,44 @@ print = {
     console: function (data) {
         console.log(data);
     },
-    error: function (condition, errorStr) {
+    record: function (condition, toRecordStr) {
         if (condition == false) {
-            console.assert(false, errorStr);
+            console.assert(false, toRecordStr);
         }
         else {
-            console.log(errorStr);
+            return toRecordStr;
         }
     },
-    array: function (array) {
-        var temp;
-        for (var i = 0; i < array.length; i++) {
-            temp = temp + array[i] + ', ';
+    form: function (value) {
+        console.table(value);
+    },
+    input: function (message) {
+        prompt(message);
+    },
+    group: function (message, frequency) {
+        if (frequency == undefined) {
+            frequency = 1;
         }
-        console.log('item: ' + temp);
-        console.log('length: ' + array.length);
+        for (var i = 0; i < frequency; i++) {
+            console.log(message);
+        }
     }
 };
-
-print.console('Hi');
-print.error(false, 'Awwwwww');
-print.error(true, 'OK');
-print.array([1,2,3,4,5]);
+var call;
+call = {
+    "return": function (data, condition) {
+        if (condition == undefined) {
+            condition = false;
+        }
+        if (condition == true) {
+            console.log(data);
+            return data;
+        }
+        else if (condition == false) {
+            return data;
+        }
+    },
+    alert: function (message) {
+        alert(message);
+    }
+};

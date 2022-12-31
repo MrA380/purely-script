@@ -1,29 +1,63 @@
-interface Print {
+interface print {
     console(data?: any): void;
-    error(condition: boolean, errorStr: string): void;
-    array(array: any[]): void;
+    record(condition: boolean, toRecordStr: any): void;
+    form(value: any): void;
+    input(message?: string): void;
+    group(message: any, frequency?: number): void;
 }
 
-let print: Print;
+interface call {
+    return(data: any, condition?: boolean): void;
+    alert(message?: any): void;
+}
+
+let print: print;
 print = {
-    console: (data?: any): void => {
+    console(data?: any): void {
         console.log(data);
     },
 
-    error: (condition: boolean, errorStr: any): void => {
+    record(condition: boolean, toRecordStr: any): void {
         if (condition == false) {
-            console.assert(false, errorStr);
+            console.assert(false, toRecordStr);
         } else {
-            console.log(errorStr);
+            return toRecordStr
         }
     },
 
-    array: (array: any[]): void => {
-        let temp;
-        for (let i = 0; i < array.length; i++) {
-            temp = temp + array[i] + ', ';
+    form(value: any) {
+        console.table(value);
+    },
+
+    input(message?: string): void {
+        prompt(message)
+    },
+
+    group(message: any, frequency?: number): void {
+        if (frequency == undefined) {
+            frequency = 1;
         }
-        console.log('item: ' + temp);
-        console.log('length: ' + array.length);
+        for (let i = 0; i < frequency; i++) {
+            console.log(message)
+        }
+    }
+}
+
+let call: call;
+call = {
+    return(data: any, condition?: boolean): void {
+        if (condition == undefined) {
+            condition = false
+        }
+        if (condition == true) {
+            console.log(data)          
+            return data;
+        } else if(condition == false) {
+            return data;
+        }
+    },
+
+    alert(message?: any): void {
+        alert(message);
     }
 }
